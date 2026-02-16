@@ -1,52 +1,57 @@
-/* 1. FORCE THE ROW: Allows fields to sit side-by-side on desktop */
-@media screen and (min-width: 1024px) {
- .page {
+/* GLOBAL LEVEL: PHYSICAL SHRINK OF VALUE TABS */
+.cs_field.cursor-pointer {
+    padding: 4px 10px!important; /* Drastically reduces white space around £100 */
+    min-width: 65px!important;   /* Makes tabs narrow */
+    height: 36px!important;      /* Makes tabs slim */
+    font-size: 14px!important;   /* Sets legible but smaller text */
+    display: flex!important;
+    justify-content: center!important;
+    align-items: center!important;
+}
+
+/* GLOBAL LEVEL: FORCE ALL TABS INTO ONE ROW */
+.grid-cols-2 {
     display: flex!important;
     flex-direction: row!important;
     flex-wrap: nowrap!important;
-    align-items: flex-end!important; /* Keeps labels and inputs level */
-    gap: 12px!important;
-  }
-
-  /* 2. SHRINK CONTAINERS: Prevents fields from taking up the full width */
- .formfield {
-    width: auto!important;
-    flex: 0 1 auto!important; /* Fields only take up needed space */
-    margin: 0!important;
-    padding: 0!important;
-  }
+    grid-template-columns: none!important;
+    gap: 8px!important;
 }
 
-/* 3. PHYSICAL SHRINK: Shrink the Amount boxes (Value Tabs) */
-label.cs_field.cursor-pointer {
-  padding: 5px 12px!important; /* Thin padding to make tabs small */
-  min-width: 70px!important;
-  height: 42px!important;      /* Slim height */
-  display: flex!important;
-  align-items: center!important;
-  justify-content: center!important;
+/* DESKTOP LAYOUT: THE HORIZONTAL BLUE BAR */
+@media screen and (min-width: 1024px) {
+    /* Targets the first page container of any form */
+   .page:first-of-type {
+        display: flex!important;
+        flex-direction: row!important;
+        flex-wrap: nowrap!important;
+        align-items: center!important;
+        background-color: #0099cc!important; /* MATW Blue */
+        padding: 10px 20px!important;
+        border-radius: 12px!important;
+        gap: 15px!important;
+    }
+
+    /* Shrink field containers so they don't force a wrap */
+   .page:first-of-type.formfield {
+        width: auto!important;
+        flex: 0 1 auto!important;
+        padding: 0!important;
+        margin: 0!important;
+    }
+
+    /* Hide labels ("Donation Amount") on Page 1 for a compact bar look */
+   .page:first-of-type label.block.mb-1 {
+        display: none!important;
+    }
 }
 
-/* 4. PHYSICAL SHRINK: Shrink the Appeal Dropdown width */
-select.cs_field {
-  width: 240px!important;       /* Limits the dropdown width specifically */
-  height: 42px!important;       /* Matches height of amount boxes */
-  padding: 0 10px!important;
-}
-
-/* 5. ALIGN THE BUTTON: Ensures the Continue button sits on the same row */
-.cs_button {
-  height: 42px!important;
-  margin-top: 0!important;
-  padding: 0 20px!important;
-}
-
-/* 6. SELECTED STATE: Highlight the active choice in your brand pink */
+/* SELECTED STATE: MATW PINK HIGHLIGHT */
 .cs_check_radio:checked + span {
-  font-weight: bold!important;
-  color: #C21579!important; 
+    color: #C21579!important; /* Pink from your settings */
+    font-weight: bold!important;
 }
 
 label.cs_field:has(input:checked) {
-  border: 2px solid #C21579!important;
+    border: 2px solid #C21579!important;
 }
