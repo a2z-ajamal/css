@@ -1,0 +1,52 @@
+/* 1. FORCE THE ROW: Allows fields to sit side-by-side on desktop */
+@media screen and (min-width: 1024px) {
+ .page {
+    display: flex!important;
+    flex-direction: row!important;
+    flex-wrap: nowrap!important;
+    align-items: flex-end!important; /* Keeps labels and inputs level */
+    gap: 12px!important;
+  }
+
+  /* 2. SHRINK CONTAINERS: Prevents fields from taking up the full width */
+ .formfield {
+    width: auto!important;
+    flex: 0 1 auto!important; /* Fields only take up needed space */
+    margin: 0!important;
+    padding: 0!important;
+  }
+}
+
+/* 3. PHYSICAL SHRINK: Shrink the Amount boxes (Value Tabs) */
+label.cs_field.cursor-pointer {
+  padding: 5px 12px!important; /* Thin padding to make tabs small */
+  min-width: 70px!important;
+  height: 42px!important;      /* Slim height */
+  display: flex!important;
+  align-items: center!important;
+  justify-content: center!important;
+}
+
+/* 4. PHYSICAL SHRINK: Shrink the Appeal Dropdown width */
+select.cs_field {
+  width: 240px!important;       /* Limits the dropdown width specifically */
+  height: 42px!important;       /* Matches height of amount boxes */
+  padding: 0 10px!important;
+}
+
+/* 5. ALIGN THE BUTTON: Ensures the Continue button sits on the same row */
+.cs_button {
+  height: 42px!important;
+  margin-top: 0!important;
+  padding: 0 20px!important;
+}
+
+/* 6. SELECTED STATE: Highlight the active choice in your brand pink */
+.cs_check_radio:checked + span {
+  font-weight: bold!important;
+  color: #C21579!important; 
+}
+
+label.cs_field:has(input:checked) {
+  border: 2px solid #C21579!important;
+}
