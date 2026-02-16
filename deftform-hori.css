@@ -1,57 +1,102 @@
-/* GLOBAL LEVEL: PHYSICAL SHRINK OF VALUE TABS */
-.cs_field.cursor-pointer {
-    padding: 4px 10px!important; /* Drastically reduces white space around £100 */
-    min-width: 65px!important;   /* Makes tabs narrow */
-    height: 36px!important;      /* Makes tabs slim */
-    font-size: 14px!important;   /* Sets legible but smaller text */
-    display: flex!important;
-    justify-content: center!important;
-    align-items: center!important;
-}
+/* ========================================
+   COMPLETE HORIZONTAL LAYOUT - ONE LINE
+   ======================================== */
 
-/* GLOBAL LEVEL: FORCE ALL TABS INTO ONE ROW */
-.grid-cols-2 {
-    display: flex!important;
-    flex-direction: row!important;
-    flex-wrap: nowrap!important;
-    grid-template-columns: none!important;
-    gap: 8px!important;
-}
-
-/* DESKTOP LAYOUT: THE HORIZONTAL BLUE BAR */
+/* 1. FORCE EVERYTHING ON ONE ROW */
 @media screen and (min-width: 1024px) {
-    /* Targets the first page container of any form */
-   .page:first-of-type {
-        display: flex!important;
-        flex-direction: row!important;
-        flex-wrap: nowrap!important;
-        align-items: center!important;
-        background-color: #0099cc!important; /* MATW Blue */
-        padding: 10px 20px!important;
-        border-radius: 12px!important;
-        gap: 15px!important;
+    /* Target the first page container */
+    .page:first-of-type {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        align-items: center !important;
+        gap: 10px !important;
+        padding: 12px 20px !important;
+        background-color: #0099cc !important; /* MATW Blue */
+        border-radius: 8px !important;
     }
 
-    /* Shrink field containers so they don't force a wrap */
-   .page:first-of-type.formfield {
-        width: auto!important;
-        flex: 0 1 auto!important;
-        padding: 0!important;
-        margin: 0!important;
+    /* Make all form fields shrink to content width */
+    .page:first-of-type .formfield {
+        width: auto !important;
+        flex: 0 1 auto !important;
+        padding: 0 !important;
+        margin: 0 !important;
     }
 
-    /* Hide labels ("Donation Amount") on Page 1 for a compact bar look */
-   .page:first-of-type label.block.mb-1 {
-        display: none!important;
+    /* Hide any field labels on page 1 */
+    .page:first-of-type label.block.mb-1 {
+        display: none !important;
     }
 }
 
-/* SELECTED STATE: MATW PINK HIGHLIGHT */
+/* 2. DONATION AMOUNT BOXES - FORCE ONE ROW & HIDE CIRCLES */
+.grid-cols-2 {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    grid-template-columns: none !important;
+    gap: 6px !important;
+}
+
+/* Make donation amount labels smaller and compact */
+label.cs_field.cursor-pointer {
+    padding: 6px 14px !important;
+    min-width: 60px !important;
+    height: 38px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 0.875rem !important;
+    border-radius: 6px !important;
+}
+
+/* HIDE THE RADIO BUTTON CIRCLES */
+label.cs_field.cursor-pointer input[type="radio"] {
+    display: none !important;
+}
+
+/* Style the text span only (no input visible) */
+label.cs_field.cursor-pointer span {
+    margin-left: 0 !important;
+    border: none !important;
+}
+
+/* 3. SHRINK THE DROPDOWN */
+select.cs_field {
+    width: 180px !important;
+    height: 38px !important;
+    padding: 0 10px !important;
+    font-size: 0.875rem !important;
+}
+
+/* 4. ALIGN THE BUTTON */
+.cs_button {
+    height: 38px !important;
+    padding: 0 18px !important;
+    margin-top: 0 !important;
+    font-size: 0.875rem !important;
+    white-space: nowrap !important;
+}
+
+/* 5. SELECTED STATE - MATW PINK HIGHLIGHT */
 .cs_check_radio:checked + span {
-    color: #C21579!important; /* Pink from your settings */
-    font-weight: bold!important;
+    color: #C21579 !important;
+    font-weight: bold !important;
 }
 
 label.cs_field:has(input:checked) {
-    border: 2px solid #C21579!important;
+    background-color: #C21579 !important;
+    color: white !important;
+    border: 2px solid #C21579 !important;
+}
+
+/* Make the text inside selected button white */
+label.cs_field:has(input:checked) span {
+    color: white !important;
+}
+
+/* 6. ENSURE BUTTON ALIGNMENT */
+.page:first-of-type + div {
+    margin-top: 0 !important;
 }
