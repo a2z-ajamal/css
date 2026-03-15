@@ -1,0 +1,73 @@
+/* 1. Target the specific radio group container */
+div[wire\:key="fields.736e6edc-7fef-4096-959d-89d7314f4b04"] .grid {
+    position: relative;
+    display: flex !important;
+    width: 140px;
+    height: 40px;
+    background-color: #e5e7eb; /* Light gray for "No" */
+    border-radius: 50px;
+    padding: 4px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    border: 1px solid #d1d5db;
+    gap: 0 !important;
+}
+
+/* 2. Hide the actual radio circles */
+div[wire\:key="fields.736e6edc-7fef-4096-959d-89d7314f4b04"] input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* 3. Style the "Yes" and "No" labels to sit side-by-side */
+div[wire\:key="fields.736e6edc-7fef-4096-959d-89d7314f4b04"] label {
+    flex: 1;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: #4b5563;
+    background: transparent !important;
+    border: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+/* 4. The sliding white circle (the knob) */
+div[wire\:key="fields.736e6edc-7fef-4096-959d-89d7314f4b04"] .grid::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 4px;
+    width: 66px;
+    height: 32px;
+    background-color: white;
+    border-radius: 40px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+}
+
+/* 5. LOGIC: When "Yes" is checked */
+div[wire\:key="fields.736e6edc-7fef-4096-959d-89d7314f4b04"] .grid:has(input[value="yes"]:checked) {
+    background-color: #3498db; /* Change track to blue */
+}
+
+div[wire\:key="fields.736e6edc-7fef-4096-959d-89d7314f4b04"] .grid:has(input[value="yes"]:checked)::after {
+    transform: translateX(66px); /* Move knob to the right */
+}
+
+div[wire\:key="fields.736e6edc-7fef-4096-959d-89d7314f4b04"] .grid:has(input[value="yes"]:checked) label:last-child {
+    color: #3498db; /* Blue text for Yes when active */
+}
+
+/* 6. LOGIC: When "No" is checked */
+div[wire\:key="fields.736e6edc-7fef-4096-959d-89d7314f4b04"] .grid:has(input[value="no"]:checked) label:first-child {
+    color: #6b7280; /* Gray text for No when active */
+}
